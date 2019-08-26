@@ -1,0 +1,39 @@
+<div class="text-center">
+  <h1>プロフィール登録（講師）</h1>
+</div>
+
+<div class="row mb-5">
+  <div class="col-sm-6 offset-sm-3">
+
+    <%= form_with(model: @teacher_profile, local: true) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object%>
+      
+      <div class="form-group">
+        <%= f.label :nickname, 'ニックネーム' %>
+        <%= f.text_field :nickname, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :instrument, '教える楽器' %>
+        <%= f.text_field :instrument, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :level, '対象レベル' %>
+        <%= f.text_field :level, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :lesson_fee, 'レッスン料/1時間' %>
+        <%= f.text_field :lesson_fee, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :introduction, '自己紹介文' %>
+        <%= f.text_field :introduction, class: 'form-control' %>
+      </div>
+
+      <%= f.submit '登録する', class: 'btn btn-primary btn-block' %>
+    <% end %>
+  </div>
+</div>

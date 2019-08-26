@@ -6,4 +6,10 @@ Rails.application.routes.draw do
 
   get 'student_signup', to: 'students#new'
   resources :students, only: [:show, :create]
+  
+  get 'teacher_login', to: 'teacher_sessions#new'
+  post 'teacher_login', to: 'teacher_sessions#create'
+  delete 'teacher_logout', to: 'teacher_sessions#destroy'
+  
+  resources :teacher_profiles, only: [:new, :create, :show, :index, :edit, :update]
 end
