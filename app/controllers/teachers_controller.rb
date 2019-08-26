@@ -1,8 +1,4 @@
 class TeachersController < ApplicationController
-  
-  def show
-     @teacher = Teacher.find(params[:id])
-  end
 
   def new
     @teacher = Teacher.new
@@ -17,6 +13,10 @@ class TeachersController < ApplicationController
       flash.now[:danger] = 'ユーザの登録に失敗しました。'
       render :new
     end
+  end
+  
+  def show
+     @teacher = Teacher.find(params[:id])
   end
 
   private

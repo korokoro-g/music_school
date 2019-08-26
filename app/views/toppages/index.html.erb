@@ -4,7 +4,14 @@
       <h1>オンラインの音楽教室</h1>
     </div>
     <div class="text-center">
-      <%= link_to '講師になる（登録）', teacher_signup_path, class: 'btn btn-lg btn-primary' %>
+      <div class="row">
+        <div class="col-sm-6">
+          <%= link_to '講師になる（講師登録）', teacher_signup_path, class: 'btn btn-lg btn-primary' %>
+        </div>
+        <div class="col-sm-5">
+          <%= link_to 'レッスンを受ける（生徒登録）', student_signup_path, class: 'btn btn-lg btn-primary' %>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -56,8 +63,8 @@
     </div>
   </div>
   <div class="text-center">
-      <%= link_to '講師になる（登録）', teacher_signup_path, class: 'btn btn-lg btn-primary mt-3' %>
-    </div>
+      <%= link_to '講師になる（講師登録）', teacher_signup_path, class: 'btn btn-lg btn-primary mt-3' %>
+  </div>
 </section>
 
 <section class=" mb-5">
@@ -81,5 +88,8 @@
         text text text text text text text text text
       </p>
     </div>
+  </div>
+  <div class="text-center">
+      <%= link_to 'レッスンを受ける（生徒登録）', student_signup_path, class: 'btn btn-lg btn-primary mt-3' %>
   </div>
 </section>
