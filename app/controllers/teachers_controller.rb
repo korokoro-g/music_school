@@ -8,7 +8,7 @@ class TeachersController < ApplicationController
     @teacher = Teacher.new(teacher_params)
     if @teacher.save
       flash[:success] = 'ユーザー登録しました！'
-      redirect_to @teacher
+      redirect_to teacher_login_path
     else
       flash.now[:danger] = 'ユーザの登録に失敗しました。'
       render :new

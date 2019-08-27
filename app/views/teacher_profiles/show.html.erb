@@ -1,7 +1,16 @@
-<h1><%= @teacher_profile.nickname %> さん</h1>
-<div>
-  <p>レッスン：<%= @teacher_profile.instrument %>（<%= @teacher_profile.level %>） <%= @teacher_profile.lesson_fee %>円/1時間</p>
-</div>
-<div>
-  <%= @teacher_profile.introduction %>
-</div>
+  <h1><%= @teacher_profile.nickname %> さん</h1>
+  <div>
+    <p>レッスン：<%= @teacher_profile.instrument %>（対象レベル：<%= @teacher_profile.level %>） <%= @teacher_profile.lesson_fee %>円/1時間</p>
+  </div>
+  <div>
+    自己紹介：
+    <%= @teacher_profile.introduction %>
+  </div>
+  
+  <div class="mt-5">
+    <%= link_to 'プロフィールの編集', edit_teacher_profile_path(id: current_teacher.id), class: "btn btn-lg btn-primary" %>
+  </div>
+  <div class="mt-2">
+    <%= link_to '登録内容を確認する', teacher_path(current_teacher), class: "btn btn-lg btn-primary" %>
+  </div>
+
