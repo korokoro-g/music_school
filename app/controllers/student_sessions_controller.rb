@@ -1,17 +1,17 @@
-class TeacherSessionsController < ApplicationController
+class StudentSessionsController < ApplicationController
   def new
   end
 
   def create
     email = params[:session][:email].downcase
     password = params[:session][:password]
-    if teacher_login(email, password)
+    if student_login(email, password)
       flash[:success] = 'ログインに成功しました。'
-      if current_teacher.teacher_profile
+      if current_student.student_profile
         redirect_to root_path
       else
         flash[:danger] = 'プロフィールを登録してください。'
-        redirect_to new_teacher_profile_path
+        redirect_to new_student_profile_path
       end
     else
       flash.now[:danger] = 'ログインに失敗しました。'
@@ -20,17 +20,17 @@ class TeacherSessionsController < ApplicationController
   end
 
   def destroy
-    session[:teacher_id] = nil
+    session[:student_id] = nil
     flash[:success] = 'ログアウトしました。'
     redirect_to root_url
   end
   
   private
 
-  def teacher_login(email, password)
-    @teacher = Teacher.find_by(email: email)
-    if @teacher && @teacher.authenticate(password)
-      session[:teacher_id] = @teacher.id
+  def student_login(email, password)
+    @student = Student.find_by(email: email)
+    if @student && @student.authenticate(password)
+      session[:student_id] = @student.id
       return true
     else
       return false

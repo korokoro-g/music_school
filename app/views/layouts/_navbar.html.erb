@@ -12,9 +12,12 @@
         <% if teacher_logged_in? %>
           <li class="nav-item"><%= link_to 'マイページ（講師）', teacher_profile_path(current_teacher), class: 'nav-link' %></li>
           <li class="nav-item"><%= link_to 'ログアウト', teacher_logout_path, method: :delete, class: 'nav-link' %></li>
+        <% elsif student_logged_in? %>
+          <li class="nav-item"><%= link_to 'マイページ（生徒）', student_profile_path(current_student), class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to 'ログアウト', student_logout_path, method: :delete, class: 'nav-link' %></li>
         <% else %>
           <li class="nav-item"><%= link_to '講師ログイン', teacher_login_path, class: 'nav-link' %></li>
-          <li class="nav-item"><a href="#" class="nav-link">生徒ログイン</a></li>
+          <li class="nav-item"><%= link_to '生徒ログイン', student_login_path, class: 'nav-link' %></li>
           <li class="nav-item"><%= link_to '講師登録', teacher_signup_path, class: 'nav-link' %></li>
           <li class="nav-item"><%= link_to '生徒登録', student_signup_path, class: 'nav-link' %></li>
         <% end %>
