@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   delete 'student_logout', to: 'student_sessions#destroy'
   
   resources :teacher_profiles, only: [:new, :create, :show, :index, :edit, :update]
+  resources :student_profiles, only: [:new, :create, :show, :edit, :update]
 end

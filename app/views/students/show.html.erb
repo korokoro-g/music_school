@@ -12,10 +12,7 @@
   </div>
   
   <div>
-    <p>次に、プロフィールを登録してください。</p>
-  </div>
-  <div>
-    <a href="#" class="btn btn-lg btn-primary">プロフィール登録・編集</a>
+    <%= link_to 'プロフィールの編集', edit_student_profile_path(id: current_student.id), class: "btn btn-lg btn-primary" %>
   </div>
 
 </div>

@@ -7,4 +7,6 @@ class Student < ApplicationRecord
   validates :birthday, presence: true, length: { maximum: 10 }
   validates :address, presence: true, length: { maximum: 255 }
   has_secure_password
+  
+  has_one :student_profile, dependent: :destroy
 end
