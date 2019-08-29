@@ -6,4 +6,11 @@ class TeacherProfile < ApplicationRecord
   validates :introduction, presence: true, length: { maximum: 1000 }
   
   belongs_to :teacher
+  
+  def self.search(search)
+    if search
+      TeacherProfile.where(['nickname LIKE ? OR instrument LIKE ? OR level LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%"])
+    end
+  end
+  
 end

@@ -17,4 +17,8 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def counts(profile)
+    @teacher_profile_number = profile.count
+  end
+  
 end

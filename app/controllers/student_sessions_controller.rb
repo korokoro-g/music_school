@@ -8,7 +8,7 @@ class StudentSessionsController < ApplicationController
     if student_login(email, password)
       flash[:success] = 'ログインに成功しました。'
       if current_student.student_profile
-        redirect_to root_path
+        redirect_to student_profile_path(current_student)
       else
         flash[:danger] = 'プロフィールを登録してください。'
         redirect_to new_student_profile_path

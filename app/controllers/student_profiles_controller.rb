@@ -6,7 +6,7 @@ class StudentProfilesController < ApplicationController
   end
 
   def create
-    @student_profile = current_studnet.build_student_profile(student_profile_params)
+    @student_profile = current_student.build_student_profile(student_profile_params)
     
     if @student_profile.save
       flash[:success] = 'プロフィールを登録しました。'

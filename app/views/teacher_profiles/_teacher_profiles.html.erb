@@ -1,0 +1,29 @@
+<% if teacher_profiles.any? %>
+
+  <ul class="list-unstyled">
+    <% teacher_profiles.each do |teacher_profile| %>
+    
+    
+      <li class="media">
+        <img class="mr-2 rounded" src="<%= gravatar_url(teacher_profile.teacher, { size: 50 }) %>" alt="">
+        <div class="media-body">
+          <div>
+            <p><%= teacher_profile.nickname %> さん</p>
+          </div>
+          <div>
+            <p>レッスン：<%= teacher_profile.instrument %>（対象レベル：<%= teacher_profile.level %>）</p>
+          </div>
+        </div>
+      </li>
+      
+      
+    <% end %>
+  </ul>
+
+<%= paginate teacher_profiles %>
+
+<% else %>
+
+  <p><%= comment %></p>
+
+<% end %>

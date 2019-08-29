@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   
   resources :teacher_profiles, only: [:new, :create, :show, :index, :edit, :update]
   resources :student_profiles, only: [:new, :create, :show, :edit, :update]
+  
+  get 'search', to: 'teacher_profiles#search'
 end

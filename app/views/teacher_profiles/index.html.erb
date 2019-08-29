@@ -1,21 +1,4 @@
-<ul class="list-unstyled">
-  <% @teacher_profiles.each do |teacher_profile| %>
-    <li class="media">
-      <img class="mr-2 rounded" src="<%= gravatar_url(teacher_profile.teacher, { size: 50 }) %>" alt="">
-      <div class="media-body">
-        <div>
-          <p><%= teacher_profile.nickname %> さん</p>
-        </div>
-        <div>
-          <p>レッスン：<%= teacher_profile.instrument %>（対象レベル：<%= teacher_profile.level %>）</p>
-        </div>
-        <!--
-        <div>
-          <p><%= link_to 'プロフィール詳細', teacher_profile_path(teacher_profile) %></p>
-        </div>
-        -->
-      </div>
-    </li>
-  <% end %>
-</ul>
-<%= paginate @teacher_profiles %>
+<h1>講師一覧</h1>
+<p>現在、<%= @teacher_profile_number %>名の講師が登録しています。</p>
+
+<%= render 'teacher_profiles', teacher_profiles: @teacher_profiles, comment:'現在、レッスン可能な講師の登録はありません。' %>

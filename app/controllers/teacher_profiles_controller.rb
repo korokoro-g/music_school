@@ -1,5 +1,6 @@
 class TeacherProfilesController < ApplicationController
-  before_action :require_teacher_logged_in, only: [:new, :create, :edit, :update]
+  before_action :require_teacher_logged_in, only: [:new, :create, :show, :edit, :update]
+#  before_action :correct_teacher, only: [:show, :edit, :update]
   
   def new
     @teacher_profile = current_teacher.build_teacher_profile
@@ -26,7 +27,8 @@ class TeacherProfilesController < ApplicationController
   end
 
   def index
-    @teacher_profiles = TeacherProfile.order(id: :desc).page(params[:page]).per(20)
+    @teacher_profiles = TeacherProfile.order(id: :desc).page(params[:page]).per(5)
+    counts(TeacherProfile)
   end
 
   def edit
@@ -45,10 +47,21 @@ class TeacherProfilesController < ApplicationController
     end
   end
   
+  def search
+    @teacher_profiles = TeacherProfile.search(params[:search]).page(params[:page]).per(20)
+    counts(@teacher_profiles)
+  end
+  
   private
   
   def teacher_profile_params
     params.require(:teacher_profile).permit(:nickname, :instrument, :level, :lesson_fee, :introduction)
+  end
+  
+  def correct_teacher
+    unless current_teacher.teacher_profile.id == params[:id]
+      redirect_to root_url
+    end
   end
 
 end
