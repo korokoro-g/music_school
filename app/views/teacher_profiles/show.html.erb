@@ -19,7 +19,9 @@
             <div class="media-body">
               <div class="mb-2">
                 <% if teacher_book.finish_teacher == false %>
-                  <%= teacher_book.booked_at_date %> <%= teacher_book.booked_at_time %>スタート 生徒：<%= teacher_book.student.student_profile.nickname %>さん
+                  <%= teacher_book.booked_at_date.year %>年<%= teacher_book.booked_at_date.month %>月<%= teacher_book.booked_at_date.day %>日 
+                  <%= teacher_book.booked_at_time.hour %>時<%= teacher_book.booked_at_time.min %>分スタート 
+                  生徒：<%= teacher_book.student.student_profile.nickname %>さん
                   <%= link_to 'レッスン詳細', teacher_book %>
                 <% end %>
               </div>
@@ -36,7 +38,9 @@
             <div class="media-body">
               <div class="mb-2">
                 <% if teacher_book.finish_teacher == true %>
-                  <%= teacher_book.booked_at_date %> <%= teacher_book.booked_at_time %>スタート 生徒：<%= teacher_book.student.student_profile.nickname %>さん
+                  <%= teacher_book.booked_at_date.year %>年<%= teacher_book.booked_at_date.month %>月<%= teacher_book.booked_at_date.day %>日 
+                  <%= teacher_book.booked_at_time.hour %>時<%= teacher_book.booked_at_time.min %>分スタート  
+                  生徒：<%= teacher_book.student.student_profile.nickname %>さん
                   <%= link_to 'レッスン詳細', teacher_book %>
                 <% end %>
               </div>

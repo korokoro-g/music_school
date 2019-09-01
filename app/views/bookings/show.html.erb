@@ -5,13 +5,13 @@
 <div class="mb-5">
   <% if teacher_logged_in? %>
     <div class="text-center">
-      <%= @teacher_booking.booked_at_date %> <%= @teacher_booking.booked_at_time %>スタート
+      <%= @teacher_booking.booked_at_date.year %>年<%= @teacher_booking.booked_at_date.month %>月<%= @teacher_booking.booked_at_date.day %>日 <%= @teacher_booking.booked_at_time.hour %>時<%= @teacher_booking.booked_at_time.min %>分スタート
       <%= @teacher_booking.teacher.teacher_profile.instrument %>（<%= @teacher_booking.teacher.teacher_profile.level %>）
       生徒：<%= @teacher_booking.student.student_profile.nickname %>さん
     </div>
   <% elsif student_logged_in? %>
     <div class="text-center">
-      <%= @student_booking.booked_at_date %> <%= @student_booking.booked_at_time %>スタート 
+      <%= @student_booking.booked_at_date.year %>年<%= @student_booking.booked_at_date.month %>月<%= @student_booking.booked_at_date.day %>日 <%= @student_booking.booked_at_time.hour %>時<%= @student_booking.booked_at_time.min %>分スタート 
       <%= @student_booking.teacher.teacher_profile.instrument %>（<%= @student_booking.teacher.teacher_profile.level %>）
       講師：<%= @student_booking.teacher.teacher_profile.nickname %>さん
     </div>

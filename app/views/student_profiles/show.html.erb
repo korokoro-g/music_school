@@ -16,15 +16,32 @@
         <li class="media">
           <div class="media-body">
             <div class="mb-2">
-              <%= student_book.booked_at_date %> <%= student_book.booked_at_time %>スタート 講師：<%= student_book.teacher.teacher_profile.nickname %>さん
-              <%= link_to 'レッスン詳細', student_book %>
+              <% if student_book.finish_student == false %>
+                <%= student_book.booked_at_date.year %>年<%= student_book.booked_at_date.month %>月<%= student_book.booked_at_date.day %>日 <%= student_book.booked_at_time.hour %>時<%= student_book.booked_at_time.min %>分スタート 講師：<%= student_book.teacher.teacher_profile.nickname %>さん
+                <%= link_to 'レッスン詳細', student_book %>
+              <% end %>
             </div>
           </div>
         </li>
       <% end %>
     </ul>
   </div>
+  
   <div id="tab2" class="tab-pane active">
+    <ul class="list-unstyled">
+      <% @student_books.each do |student_book| %>
+        <li class="media">
+          <div class="media-body">
+            <div class="mb-2">
+              <% if student_book.finish_student == true %>
+                <%= student_book.booked_at_date.year %>年<%= student_book.booked_at_date.month %>月<%= student_book.booked_at_date.day %>日 <%= student_book.booked_at_time.hour %>時<%= student_book.booked_at_time.min %>分スタート 講師：<%= student_book.teacher.teacher_profile.nickname %>さん
+                <%= link_to 'レッスン詳細', student_book %>
+              <% end %>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </div>
 
