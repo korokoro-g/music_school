@@ -1,14 +1,45 @@
-  <h1><%= @student_profile.nickname %> さん</h1>
+<h1><%= @student_profile.nickname %> さんのページ</h1>
 
-  <div>
-    自己紹介：
-    <%= @student_profile.introduction %>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a href="#tab1" class="nav-link active" data-toggle="tab">レッスン予約</a>
+  </li>
+  <li class="nav-item">
+    <a href="#tab2" class="nav-link" data-toggle="tab">過去のレッスン</a>
+  </li>
+</ul>
+
+<div class="tab-content">
+  <div id="tab1" class="tab-pane active">
+    <ul class="list-unstyled">
+      <% @student_books.each do |student_book| %>
+        <li class="media">
+          <div class="media-body">
+            <div class="mb-2">
+              <%= student_book.booked_at_date %> <%= student_book.booked_at_time %>スタート 講師：<%= student_book.teacher.teacher_profile.nickname %>さん
+              <%= link_to 'レッスン詳細', student_book %>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
   </div>
-  
-  <div class="mt-5">
-    <%= link_to 'プロフィールの編集', edit_student_profile_path(id: current_student.id), class: "btn btn-lg btn-primary" %>
+  <div id="tab2" class="tab-pane active">
   </div>
-  <div class="mt-2">
-    <%= link_to '登録内容を確認する', student_path(current_student), class: "btn btn-lg btn-primary" %>
-  </div>
+</div>
+
+
+<img class="mr-2 rounded" src="<%= gravatar_url(@student_profile.student, { size: 150 }) %>" alt="">
+<h3><%= @student_profile.nickname %> さん</h3>
+<div>
+  自己紹介：
+  <%= @student_profile.introduction %>
+</div>
+
+<div class="mt-5">
+  <%= link_to 'プロフィールの編集', edit_student_profile_path(id: current_student.id), class: "btn btn-lg btn-primary" %>
+</div>
+<div class="mt-2 mb-3">
+  <%= link_to '登録内容を確認する', student_path(current_student), class: "btn btn-lg btn-primary" %>
+</div>
 

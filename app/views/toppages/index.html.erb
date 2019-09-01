@@ -7,7 +7,7 @@
 
     <div class="text-center mb-3">
       <%= form_tag(search_path, method: :get) do  %>
-        楽器or対象レベルor講師 検索：
+        楽器or対象レベルor講師名 検索：
         <%= text_field_tag :search, '', placeholder: '（例）ピアノ' %>
         <%= submit_tag '検索' %>
       <% end %>

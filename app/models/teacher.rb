@@ -9,4 +9,8 @@ class Teacher < ApplicationRecord
   has_secure_password
   
   has_one :teacher_profile, dependent: :destroy
+  
+  has_many :bookings
+  has_many :lesson_students, through: :bookings, source: :student
+  
 end

@@ -1,0 +1,78 @@
+<div class="text-center">
+  <h1>レッスン詳細</h1>
+</div>
+
+<div class="mb-5">
+  <% if teacher_logged_in? %>
+    <div class="text-center">
+      <%= @teacher_booking.booked_at_date %> <%= @teacher_booking.booked_at_time %>スタート
+      <%= @teacher_booking.teacher.teacher_profile.instrument %>（<%= @teacher_booking.teacher.teacher_profile.level %>）
+      生徒：<%= @teacher_booking.student.student_profile.nickname %>さん
+    </div>
+  <% elsif student_logged_in? %>
+    <div class="text-center">
+      <%= @student_booking.booked_at_date %> <%= @student_booking.booked_at_time %>スタート 
+      <%= @student_booking.teacher.teacher_profile.instrument %>（<%= @student_booking.teacher.teacher_profile.level %>）
+      講師：<%= @student_booking.teacher.teacher_profile.nickname %>さん
+    </div>
+  <% else %>
+    <% redirect_to root_path %>
+  <% end %>
+</div>
+
+
+<% if teacher_logged_in? %>
+
+  <div class="text-center mt-3">
+    <%= link_to '予約済み', cancel_path(@teacher_booking), class: "btn btn-lg btn-primary" %>
+    <br>※クリックすると予約がキャンセルされます。
+  </div>
+  <div class="text-center mt-3">
+    <%= link_to 'レッスンを受ける', root_path, class: "btn btn-lg btn-primary" %>
+    <br>※外部のビデオチャットサービスに接続します。
+  </div>
+
+  <% if @teacher_booking.finish_teacher == false %>
+    <div class="text-center mt-3 mb-3">
+      <%= form_with(model: @teacher_booking, local: true) do |f| %>
+        <%= hidden_field_tag :finish_teacher, true %>
+        <%= f.submit 'レッスン完了', class: 'btn btn-primary btn-lg' %>
+      <% end %>
+      <br>※レッスンが完了したらクリックしてください。
+    </div>
+  <% elsif @teacher_booking.finish_teacher == true && @teacher_booking.finish_student == false %>
+    <div class="text-center mt-3"><div class="btn btn-success btn-lg">完了（生徒さんの完了をお待ちください）</div></div>
+  <% elsif @teacher_booking.finish_teacher == true && @teacher_booking.finish_student == true %>
+    <div class="text-center mt-3"><div class="btn btn-danger btn-lg">レッスンが完了しました！</div></div>
+  <% end %>
+
+<% elsif student_logged_in? %>
+
+  <div class="text-center mt-3">
+    <%= link_to '予約済み', cancel_path(@student_booking), class: "btn btn-lg btn-primary" %>
+    <br>※クリックすると予約がキャンセルされます。
+  </div>
+  <div class="text-center mt-3">
+    <%= link_to 'レッスンを受ける', root_path, class: "btn btn-lg btn-primary" %>
+    <br>※外部のビデオチャットサービスに接続します。
+  </div>
+  
+  <% if @student_booking.finish_student == false %>
+    <div class="text-center mt-3 mb-3">
+      <%= form_with(model: @student_booking, local: true) do |f| %>
+        <%= hidden_field_tag :finish_student, true %>
+        <%= f.submit 'レッスン完了', class: 'btn btn-primary btn-lg' %>
+      <% end %>
+      <br>※レッスンが完了したらクリックしてください。
+    </div>
+  <% elsif @student_booking.finish_student == true && @student_booking.finish_teacher == false %>
+    <div class="text-center mt-3"><div class="btn btn-success btn-lg">完了（講師の完了をお待ちください）</div></div>
+  <% elsif @student_booking.finish_student == true && @student_booking.finish_teacher == true %>
+    <div class="text-center mt-3"><div class="btn btn-danger btn-lg">レッスンが完了しました！</div></div>
+  <% end %>
+
+<% else %>
+
+  <% redirect_to root_path %>
+
+<% end %>

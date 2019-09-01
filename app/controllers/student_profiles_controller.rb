@@ -18,6 +18,7 @@ class StudentProfilesController < ApplicationController
   end
 
   def show
+    @student_books = current_student.bookings.order(:booked_at_date)
     @student_profile = current_student.student_profile
     unless @student_profile
       flash[:danger] = 'プロフィールを登録してください。'

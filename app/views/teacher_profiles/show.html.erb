@@ -1,8 +1,67 @@
-<%= render 'teacher_profile_detail', teacher_profile: @teacher_profile %>
+<% if teacher_logged_in? && current_teacher == @teacher_profile.teacher %>
+
+  <h1><%= @teacher_profile.nickname %> さんのページ</h1>
   
-  <div class="mt-5">
-    <%= link_to 'プロフィールの編集', edit_teacher_profile_path(id: current_teacher.id), class: "btn btn-lg btn-primary" %>
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a href="#tab1" class="nav-link active" data-toggle="tab">レッスン予約</a>
+    </li>
+    <li class="nav-item">
+      <a href="#tab2" class="nav-link" data-toggle="tab">過去のレッスン</a>
+    </li>
+  </ul>
+  
+  <div class="tab-content">
+    <div id="tab1" class="tab-pane active">
+      <ul class="list-unstyled">
+        <% @teacher_books.each do |teacher_book| %>
+          <li class="media">
+            <div class="media-body">
+              <div class="mb-2">
+                <% if teacher_book.finish_teacher == false %>
+                  <%= teacher_book.booked_at_date %> <%= teacher_book.booked_at_time %>スタート 生徒：<%= teacher_book.student.student_profile.nickname %>さん
+                  <%= link_to 'レッスン詳細', teacher_book %>
+                <% end %>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    
+    <div id="tab2" class="tab-pane active">
+      <ul class="list-unstyled">
+        <% @teacher_books.each do |teacher_book| %>
+          <li class="media">
+            <div class="media-body">
+              <div class="mb-2">
+                <% if teacher_book.finish_teacher == true %>
+                  <%= teacher_book.booked_at_date %> <%= teacher_book.booked_at_time %>スタート 生徒：<%= teacher_book.student.student_profile.nickname %>さん
+                  <%= link_to 'レッスン詳細', teacher_book %>
+                <% end %>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    
   </div>
-  <div class="mt-2">
-    <%= link_to '登録内容を確認する', teacher_path(current_teacher), class: "btn btn-lg btn-primary" %>
-  </div>
+<% end%>
+
+<%= render 'teacher_profile_detail', teacher_profile: @teacher_profile %>
+
+<% if student_logged_in? %>
+  <%= link_to '予約する', new_teacher_booking_path(@teacher_profile.teacher) %>
+<% end %>
+
+<% if teacher_logged_in? %>
+  <% if @teacher_profile.teacher.id == current_teacher.id %>
+    <div class="mt-5">
+      <%= link_to 'プロフィールの編集', edit_teacher_profile_path(id: current_teacher.id), class: "btn btn-lg btn-primary" %>
+    </div>
+    <div class="mt-2 mb-3">
+      <%= link_to '登録内容を確認する', teacher_path(current_teacher), class: "btn btn-lg btn-primary" %>
+    </div>
+  <% end %>
+<% end %>

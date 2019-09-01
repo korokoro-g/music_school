@@ -2,8 +2,7 @@
 
   <ul class="list-unstyled">
     <% teacher_profiles.each do |teacher_profile| %>
-    
-    
+
       <li class="media">
         <img class="mr-2 rounded" src="<%= gravatar_url(teacher_profile.teacher, { size: 50 }) %>" alt="">
         <div class="media-body">
@@ -15,12 +14,12 @@
           </div>
         </div>
       </li>
-      
+      <%= link_to '詳細を見る', teacher_profile %>
       
     <% end %>
   </ul>
 
-<%= paginate teacher_profiles %>
+  <%= paginate teacher_profiles %>
 
 <% else %>
 

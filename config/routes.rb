@@ -2,7 +2,12 @@ Rails.application.routes.draw do
   root to: 'toppages#index'
   
   get 'teacher_signup', to: 'teachers#new'
-  resources :teachers, only: [:show, :create]
+  resources :teachers, only: [:show, :create] do
+    resources :bookings, only: [:new]
+  end
+  
+  get '/cancel/:id', to: 'bookings#destroy', as: 'cancel'
+  resources :bookings, only: [:create, :show, :update]
 
   get 'student_signup', to: 'students#new'
   resources :students, only: [:show, :create]
@@ -19,4 +24,6 @@ Rails.application.routes.draw do
   resources :student_profiles, only: [:new, :create, :show, :edit, :update]
   
   get 'search', to: 'teacher_profiles#search'
+  get 'me', to: 'teacher_profiles#me'
+  
 end

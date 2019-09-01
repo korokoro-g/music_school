@@ -1,8 +1,13 @@
-<h1><%= teacher_profile.nickname %> さん</h1>
-<div>
-  <p>レッスン：<%= teacher_profile.instrument %>（対象レベル：<%= teacher_profile.level %>） <%= teacher_profile.lesson_fee %>円/1時間</p>
-</div>
-<div>
-  自己紹介：
-  <%= teacher_profile.introduction %>
-</div>
+<% if teacher_profile %>
+<img class="mr-2 rounded" src="<%= gravatar_url(teacher_profile.teacher, { size: 150 }) %>" alt="">
+  <h3><%= teacher_profile.nickname %> さん</h3>
+  <div>
+    <p>レッスン：<%= teacher_profile.instrument %>（対象レベル：<%= teacher_profile.level %>） <%= teacher_profile.lesson_fee %>円/1時間</p>
+  </div>
+  <div>
+    自己紹介：
+    <%= teacher_profile.introduction %>
+  </div>
+<% else %>
+  <p>プロフィールが存在しません。</P>
+<% end %>

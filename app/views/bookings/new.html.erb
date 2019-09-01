@@ -1,0 +1,22 @@
+<div class="text-center">
+  <h1>レッスンを予約する</h1>
+</div>
+
+<div class="row mb-5">
+  
+  <div class="col-sm-6 offset-sm-3">
+    <%= form_with(model: @booking, local: true) do |f| %>
+      <div class="form-group">
+        <%= f.label :booked_at_date, '予約日' %>
+        <%= f.date_field :booked_at_date, class: 'form-control' %>
+        
+        <%= f.label :booked_at_time, '予約時間' %>
+        <%= f.time_field :booked_at_time, class: 'form-control' %>
+        
+        <%= f.hidden_field :teacher_id, :value =>params[:teacher_id] %>
+      </div>
+      <%= f.submit '予約する', class: 'btn btn-primary btn-block' %>
+    <% end %>
+  </div>
+  
+</div>

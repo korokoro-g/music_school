@@ -8,7 +8,7 @@ class TeacherSessionsController < ApplicationController
     if teacher_login(email, password)
       flash[:success] = 'ログインに成功しました。'
       if current_teacher.teacher_profile
-        redirect_to teacher_profile_path(current_teacher)
+        redirect_to me_path
       else
         flash[:danger] = 'プロフィールを登録してください。'
         redirect_to new_teacher_profile_path
